@@ -13,7 +13,7 @@ const app = express();
 
 // db 연결 2
 const client = mysql.createConnection({
-    user : 'BPM',
+    user : 'root',
     password : '@Rkddbals0217',
     database : 'duduhgeedb'
 });
@@ -50,4 +50,90 @@ app.get('/',(req,res)=>{
             is_logined : false
         });
     }
+});
+
+app.get('/register',(req,res)=>{
+    console.log('회원가입 페이지');
+    res.render('register');
+});
+
+app.post('/register',(req,res)=>{
+    console.log('회원가입 하는중')
+    const body = req.body;
+    const id = body.id;
+    const pw = body.pw;
+    //const 
+    //const name = body.name;
+    //const age = body.age;
+
+    client.query('select * from userdata where id=?',[id],(err,data)=>{
+        if(data.length == 0){
+            i=0;
+            console.log('회원가입 성공');
+            client.query('insert into users(id, pw, num) values(?,?,?)',[
+                id, pw , i
+            ]);
+            i++;
+            res.redirect('/');
+        }else{
+            console.log('회원가입 실패');
+            res.send('<script>alert("회원가입 실패");</script>')
+            res.redirect('/login');
+        }
+    });
+});
+
+// 로그인
+app.get('/login',(req,res)=>{
+    console.log('로그인 작동');
+    res.render('login');
+});
+
+app.post('/login',(req,res)=>{
+    const body = req.body;
+    const id = body.id;
+    const pw = body.pw;
+
+    client.query('select * from userdata where id=?',[id],(err,data)=>{
+        // 로그인 확인
+        console.log(data[0]);
+        console.log(id);
+        console.log(data[0].id);
+        console.log(data[0].pw);
+        console.log(id == data[0].id);
+        console.log(pw == data[0].pw);
+        if(id == data[0].id || pw == data[0].pw){
+            console.log('로그인 성공');
+            // 세션에 추가
+            req.session.is_logined = true;
+            req.session.name = data.name;
+            req.session.id = data.id;
+            req.session.pw = data.pw;
+            req.session.save(function(){ // 세션 스토어에 적용하는 작업
+                res.render('index',{ // 정보전달
+                    name : data[0].name,
+                    id : data[0].id,
+                    age : data[0].age,
+                    is_logined : true
+                });
+            });
+        }else{
+            console.log('로그인 실패');
+            res.render('login');
+        }
+    });
+    
+});
+
+// 로그아웃
+app.get('/logout',(req,res)=>{
+    console.log('로그아웃 성공');
+    req.session.destroy(function(err){
+        // 세션 파괴후 할 것들
+        res.redirect('/');
+    });
+
+});
+app.listen(3000,()=>{
+    console.log('3000 port running...');
 });

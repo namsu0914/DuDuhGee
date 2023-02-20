@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/354885cafc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="title">
+                <i class="fab fa-pied-piper-square"></i>
+                <a href="/">PRO</a>
+            </div>
+            <div class="menu_bar">
+                <ul>
+                    <li><a href="">show</a></li>
+                    <li><a href="">test</a></li>
+                <% if(is_logined == false){ %>
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">register</a></li>  
+                <% }else{ %>
+                    <li><%= name %> 님 환영합니다!</li>
+                    <li><a href="/logout">logout</a></li>  
+                <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
