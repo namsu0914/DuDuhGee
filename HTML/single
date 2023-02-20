@@ -93,7 +93,7 @@
 
                     <div class="bg-light rounded p-5">
                         <h3 class="mb-4 section-title">로그인</h3>
-                        <form action="">
+                        <form action="/login" method="post">
                             <div class="form-row">
                                 <div class="loginbox">
                                     <label for="loginid">ID *</label>
