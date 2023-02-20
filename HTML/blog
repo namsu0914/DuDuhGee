@@ -124,7 +124,7 @@
                     <h4 class="font-weight-normal text-muted mb-3"></h4>
                 </div>
                 <div class="col-lg-6">
-                    <img src="https://postfiles.pstatic.net/MjAyMzAyMThfMjEx/MDAxNjc2Njk1ODgwNzE0.yUj34aw3XUR7oBfcbyTAjnDLFeve6aA10TaG5jOCYKUg.DTRWu-_rYNgjczQyQF7E9cTQBLj_jVLnlnR-q87X-oUg.GIF.olaaire/fingerprint.gif?type=w966">                    
+                                        
                 </div>
     </div>
     <div class="container-fluid py-5">
@@ -138,7 +138,7 @@
                          <h4 class="font-weight-normal text-muted mb-3"></h4>
                     </div>
                     <div class="col-lg-6">
-                        <img src="https://postfiles.pstatic.net/MjAyMzAyMThfMjEx/MDAxNjc2Njk1ODgwNzE0.yUj34aw3XUR7oBfcbyTAjnDLFeve6aA10TaG5jOCYKUg.DTRWu-_rYNgjczQyQF7E9cTQBLj_jVLnlnR-q87X-oUg.GIF.olaaire/fingerprint.gif?type=w966">                    
+                                           
                      </div>    
     </div>        
             
@@ -149,7 +149,7 @@
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
                 <a href="index.html" class="navbar-brand">
-                    <h1 class="m-0 mt-n3 display-4 text-primary">BPM</h1>
+                    <h1 class="m-0 mt-n3 display-4 text-primary">Doduhgee</h1>
                 </a>
                 <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
                 <h5 class="font-weight-semi-bold text-white mb-2">Opening Hours:</h5>
@@ -160,7 +160,7 @@
                 <h4 class="font-weight-semi-bold text-primary mb-4">Get In Touch</h4>
                 <p><i class="fa fa-map-marker-alt text-primary mr-2"></i>123 Street, New York, USA</p>
                 <p><i class="fa fa-phone-alt text-primary mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope text-primary mr-2"></i>bpmdoduhgee@duksung.ac.kr</p>
+                <p><i class="fa fa-envelope text-primary mr-2"></i>info@example.com</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
