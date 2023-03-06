@@ -4,8 +4,8 @@ const session = require('express-session')
 const bodyParser = require('body-parser');
 const FileStore = require('session-file-store')(session)
 
-var authRouter = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/auth');
-var authCheck = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/authCheck');
+var authRouter = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/auth_try.js');
+var authCheck = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/authCheck.js');
 var template = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/template.js');
 
 const app = express()

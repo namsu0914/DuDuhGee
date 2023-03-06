@@ -4,7 +4,7 @@ var router = express.Router();
 var template = require('./template.js');
 var db = require('./db');
 
-// 로그인 화면
+// 로그인 화면 - 기존
 router.get('/login', function (request, response) {
     var title = '로그인';
     var html = template.HTML(title,`
