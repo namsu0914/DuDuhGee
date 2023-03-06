@@ -66,7 +66,7 @@ app.post('/register',(req,res)=>{
     //const name = body.name;
     //const age = body.age;
 
-    client.query('select * from userdata where id=?',[id],(err,data)=>{
+    client.query('select * from users where id=?',[id],(err,data)=>{
         if(data.length == 0){
             i=0;
             console.log('회원가입 성공');
