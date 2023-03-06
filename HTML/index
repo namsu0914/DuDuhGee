@@ -83,7 +83,7 @@
                             <a href="blog.html" class="nav-item nav-link">등록방법</a>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                            <button type="button" class="btn btn-primary mr-3 d-none d-lg-block" onclick="location.href='file:///C:/web/cleaning-services-website-template/single.html' ">로그인</button>                       
+                        <button type="button" class="btn btn-primary mr-3 d-none d-lg-block" onclick="location.href='file:///C:/web/doduhgee%20html/single.html' ">로그인</button>  
                     </div>
                 </nav>
             </div>
