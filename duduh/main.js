@@ -53,7 +53,7 @@ app.get('/',(req,res)=>{
     }
 });
 
-app.get('/login', function(req, res){
+app.get('/single.ejs', function(req, res){
     res.render('single.ejs'); // ejs(html)파일 보여줄 때 이렇게 render() 사용
 });
 
@@ -86,7 +86,6 @@ app.get('/login', function(req, res){
 //         }
 //     });
 // });
-
 
 
 app.listen(3000,()=>{
