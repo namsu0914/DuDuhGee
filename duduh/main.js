@@ -7,6 +7,8 @@ const session = require('express-session');
 const crypto = require('crypto');
 const FileStore = require('session-file-store')(session); // 세션을 파일에 저장
 const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const saltRounds=10;
 
 // express 설정 1
 const app = express();
@@ -83,7 +85,6 @@ app.get('/register.ejs',(req,res)=>{
     console.log('회원가입 페이지');
     res.render('register.ejs');
 });
-
 app.post('/register',(request,response)=>{    
     console.log('회원가입 진행중');
     var username = request.body.name;
@@ -91,14 +92,24 @@ app.post('/register',(request,response)=>{
     var password = request.body.password;    
 
     if (username && userid && password) {
-        
-        client.query('SELECT * FROM Users.users WHERE id = ?', [username], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
+        console.log('회원가입 id와 pw가 받아졌음');
+        client.query('SELECT * FROM Users.users WHERE id = ?', [userid], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
             if (error) throw error;
             if (results.length <= 0) {     // DB에 같은 이름의 회원아이디가 없는 경우 
-                db.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
-                    if (error) throw error2;
-                    response.send(`회원가입이 완료되었습니다.`);
+                const param=[userid, password, username];
+                bcrypt.hash(param[1], saltRounds, (error, hash)=>{
+                    param[1]=hash;
+                    client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
+                        if (error) throw error2;
+                        response.send(`회원가입이 완료되었습니다.`);
+                    });
                 });
+                // 아래는 암호화 적용 안하는 코드
+                // client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
+                //     console.log('됐나');
+                //     if (error) throw error2;
+                //     response.send(`회원가입이 완료되었습니다.`);
+                // });
             } else {                                                  // DB에 같은 이름의 회원아이디가 있는 경우
                 response.send(`이미 존재하는 회원 아이디입니다.`);    
             }            
@@ -107,6 +118,7 @@ app.post('/register',(request,response)=>{
         response.send(`입력하지 않은 칸이 있습니다.`);
     }
 });
+
 app.listen(3000,()=>{
     console.log('3000 port running...');
 });
