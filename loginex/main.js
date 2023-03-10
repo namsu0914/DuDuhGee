@@ -4,11 +4,11 @@ const session = require('express-session')
 const bodyParser = require('body-parser');
 const FileStore = require('session-file-store')(session)
 
-var authRouter = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/auth_try.js');
+var authRouter = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/auth.js');
 var authCheck = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/authCheck.js');
 var template = require('/Users/euginelee/Desktop/graduate project/project1/server-mysql/loginex/template.js');
 
-const app = express()
+const app = express();
 const port = 3000
 
 app.use(bodyParser.urlencoded({ extended: false }));

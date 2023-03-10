@@ -53,9 +53,31 @@ app.get('/',(req,res)=>{
     }
 });
 
-app.get('/single.ejs', function(req, res){
-    res.render('single.ejs'); // ejs(html)파일 보여줄 때 이렇게 render() 사용
+//로그인
+app.get('/login.ejs', function(req, res){
+    console.log('로그인 작동');
+    res.render('login.ejs'); // ejs(html)파일 보여줄 때 이렇게 render() 사용
 });
+
+app.post('/login', (request, response) => {	
+    console.log('로그인 진행중');
+    var username = request.body.loginid;
+    var password = request.body.password;
+    if (username && password) {             // id와 pw가 입력되었는지 확인
+        console.log('id와 pw가 받아졌음');
+        client.query('SELECT * FROM Users.users WHERE id = ? AND password = ?', [username, password], function(error, results, fields) {
+            if (error) throw error;
+            if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
+                response.send(`성공`);  
+            } else {              
+                response.send(`로그인정보 일치 안함`);    
+            }            
+        });
+    } else {
+        response.send(`다시`);    
+    }
+    
+  });
 
 
 // 회원가입
@@ -86,7 +108,6 @@ app.get('/single.ejs', function(req, res){
 //         }
 //     });
 // });
-
 
 app.listen(3000,()=>{
     console.log('3000 port running...');
