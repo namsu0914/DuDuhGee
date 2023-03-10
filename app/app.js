@@ -7,9 +7,13 @@ const session = require('express-session');
 const crypto = require('crypto');
 const FileStore = require('session-file-store')(session); // 세션을 파일에 저장
 const cookieParser = require('cookie-parser');
-const post = require('./router/routs')
-app.use('/post_pa')
-
+var ip=require('ip');
+var https=require('https');
+const option = {
+    key: fs.readFileSync('key.pem', 'utf8'),
+    cert: fs.readFileSync('cert.pem', 'utf8'),
+    passphrase:'230310'
+}
 
 // express 설정 1
 const app = express();
@@ -137,6 +141,12 @@ app.get('/logout',(req,res)=>{
     });
 
 });
+
+https.createServer(option, app).listen(3000, function(){
+    console.log('https://'+ip.address() + ':' + 3000+ " | start time : "+new Date());
+});
+/*
 app.listen(3000,()=>{
     console.log('3000 port running...');
 });
+*/
