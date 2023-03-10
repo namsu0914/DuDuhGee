@@ -76,39 +76,37 @@ app.post('/login', (request, response) => {
     } else {
         response.send(`다시`);    
     }
-    
   });
 
+//회원가입
+app.get('/register.ejs',(req,res)=>{
+    console.log('회원가입 페이지');
+    res.render('register.ejs');
+});
 
-// 회원가입
-// app.get('/register',(req,res)=>{
-//     console.log('회원가입 페이지');
-//     res.render('register');
-// });
+app.post('/register',(request,response)=>{    
+    console.log('회원가입 진행중');
+    var username = request.body.name;
+    var userid = request.body.loginid;
+    var password = request.body.password;    
 
-// app.post('/register',(req,res)=>{
-//     console.log('회원가입 하는중')
-//     const body = req.body;
-//     const id = body.id;
-//     const pw = body.pw;
-//     const name = body.name;
-//     const age = body.age;
-
-//     client.query('select * from userdata where id=?',[id],(err,data)=>{
-//         if(data.length == 0){
-//             console.log('회원가입 성공');
-//             client.query('insert into userdata(id, name, age, pw) values(?,?,?,?)',[
-//                 id, name, age, pw
-//             ]);
-//             res.redirect('/');
-//         }else{
-//             console.log('회원가입 실패');
-//             res.send('<script>alert("회원가입 실패");</script>')
-//             res.redirect('/login');
-//         }
-//     });
-// });
-
+    if (username && userid && password) {
+        
+        client.query('SELECT * FROM Users.users WHERE id = ?', [username], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
+            if (error) throw error;
+            if (results.length <= 0) {     // DB에 같은 이름의 회원아이디가 없는 경우 
+                db.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
+                    if (error) throw error2;
+                    response.send(`회원가입이 완료되었습니다.`);
+                });
+            } else {                                                  // DB에 같은 이름의 회원아이디가 있는 경우
+                response.send(`이미 존재하는 회원 아이디입니다.`);    
+            }            
+        });
+    } else {        // 입력되지 않은 정보가 있는 경우
+        response.send(`입력하지 않은 칸이 있습니다.`);
+    }
+});
 app.listen(3000,()=>{
     console.log('3000 port running...');
 });
