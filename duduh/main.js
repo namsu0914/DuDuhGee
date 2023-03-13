@@ -9,6 +9,13 @@ const FileStore = require('session-file-store')(session); // 세션을 파일에
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const saltRounds=10;
+var ip = require('ip');
+var https = require('https');
+const option = {
+    key: fs.readFileSync('key.pem', 'utf8'),
+    cert: fs.readFileSync('cert.pem', 'utf8'),
+    passphrase:'230313'
+};
 
 // express 설정 1
 const app = express();
@@ -119,6 +126,6 @@ app.post('/register',(request,response)=>{
     }
 });
 
-app.listen(3000,()=>{
-    console.log('3000 port running...');
+https.createServer(option, app).listen(3000, function(){
+    console.log('https://'+ip.address() + ':' + 3000+ " | start time : "+new Date());
 });
