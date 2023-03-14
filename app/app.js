@@ -7,8 +7,10 @@ const session = require('express-session');
 const crypto = require('crypto');
 const FileStore = require('session-file-store')(session); // 세션을 파일에 저장
 const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 var ip=require('ip');
 var https=require('https');
+const saltRounds=10;
 const option = {
     key: fs.readFileSync('key.pem', 'utf8'),
     cert: fs.readFileSync('cert.pem', 'utf8'),
@@ -67,21 +69,18 @@ app.get('/login.ejs',(req,res)=>{
     res.render('login.ejs');
 });
 
-app.post('/login.ejs',(req,res)=>{
+/* 내가 만든 로그인
+app.post('/login',(req,res)=>{
     const body = req.body;
     const id = body.id;
     const pw = body.pw;
     console.log(id);
         client.query('select * from duduhgeedb.users where id=?',[id],(err,data)=>{
-        // 로그인 확인
-        //console.log(data[0]);
-        //console.log(id);
-        //console.log(data[0].id);
-        //console.log(data[0].pw);
-        //console.log(id == data[0].id);
-        //console.log(pw == data[0].pw);
+        
         if(id == data[0].id || pw == data[0].pw){
             console.log('로그인 성공');
+            
+            
             // 세션에 추가
             req.session.is_logined = true;
             req.session.name = data.name;
@@ -101,20 +100,51 @@ app.post('/login.ejs',(req,res)=>{
     });
     
 });
+*/
+app.post('/login', (request, response) => {	
+    console.log('로그인 진행중');
+    var username = request.body.loginid;
+    var password = request.body.password;
+    if (username && password) {             // id와 pw가 입력되었는지 확인
+        console.log('id와 pw가 받아졌음');
+        client.query('SELECT * FROM duduhgeedb.users WHERE id = ? AND password = ?', [username, password], function(error, results, fields) {
+            if (error) throw error;
+            if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
+                response.send('성공');  
+                request.session.is_logined = true;
+                //request.session.name = username;
+                request.session.id = username;
+                request.session.pw = password;
+                request.session.save(function(){ // 세션 스토어에 적용하는 작업
+                    response.render('index',{ // 정보전달
+                    
+                        id : username,
+                        pw : password,
+                        is_logined : true
+                    });
+            });
+            } else {              
+                response.send('로그인정보 일치 안함');    
+            }            
+        });
+    } else {
+        response.send('다시');    
+    }
+  });
 
-app.get('/register',(req,res)=>{
+
+  app.get('/register.ejs',(req,res)=>{
     console.log('회원가입 페이지');
-    res.render('register');
+    res.render('register.ejs');
 });
-
-app.post('/register',(req,res)=>{
+app.post('/register',(request,response)=>{
     console.log('회원가입 하는중')
-    const body = req.body;
-    const id = body.id;
-    const pw = body.pw;
+    const body = request.body;
+    const id = body.loginid;
+    const password = body.password;
     const name = body.name;
-    //const age = body.age;
 
+    /* 내가 만든 회원가입
     client.query('select * from duduhgeedb.users where id=?',[id],(err,data)=>{
         if(data.length == 0){
             i=0;
@@ -130,6 +160,34 @@ app.post('/register',(req,res)=>{
             res.redirect('/login.ejs');
         }
     });
+    */
+    if (name && id && password) {
+        console.log('회원가입 id와 pw가 받아졌음');
+        client.query('SELECT * FROM duduhgeedb.users WHERE id = ?', [id], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
+            if (error) throw error;
+            if (results.length <= 0) {     // DB에 같은 이름의 회원아이디가 없는 경우 
+                const param=[id, password, name];
+                bcrypt.hash(param[1], saltRounds, (error, hash)=>{
+                    param[1]=hash;
+                    
+                    client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [id, password,name], function (error, data) {
+                        if (error) throw error;
+                        response.send(`회원가입이 완료되었습니다.`);
+                    });
+                });
+                // 아래는 암호화 적용 안하는 코드
+                // client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
+                //     console.log('됐나');
+                //     if (error) throw error2;
+                //     response.send(`회원가입이 완료되었습니다.`);
+                // });
+            } else {                                                  // DB에 같은 이름의 회원아이디가 있는 경우
+                response.send(`이미 존재하는 회원 아이디입니다.`);    
+            }            
+        });
+    } else {        // 입력되지 않은 정보가 있는 경우
+        response.send(`입력하지 않은 칸이 있습니다.`);
+    }
 });
 
 // 로그아웃
