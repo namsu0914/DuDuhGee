@@ -47,6 +47,7 @@ app.use(session({
     store : new FileStore() // 세션이 데이터를 저장하는 곳
 }));
 
+//메인 페이지
 app.get('/',(req,res)=>{
     console.log('메인페이지 작동');
     console.log(req.session);
@@ -73,17 +74,27 @@ app.post('/login', (request, response) => {
     var username = request.body.loginid;
     var password = request.body.password;
     if (username && password) {             // id와 pw가 입력되었는지 확인
-        console.log('id와 pw가 받아졌음');
+        console.log('로그인 - id와 pw가 받아졌음');
         client.query('SELECT * FROM Users.users WHERE id = ? AND password = ?', [username, password], function(error, results, fields) {
             if (error) throw error;
             if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
-                response.send(`성공`);  
+                response.send(`로그인 성공`);  
+                request.session.is_logined = true;
+                request.session.id = username;
+                request.session.pw = password;
+                request.session.save(function(){ // 세션 스토어에 적용하는 작업
+                    response.render('index',{ // 정보전달
+                        id : username,
+                        pw : password,
+                        is_logined : true
+                    });
+            });
             } else {              
                 response.send(`로그인정보 일치 안함`);    
             }            
         });
     } else {
-        response.send(`다시`);    
+        response.send(`로그인 다시`);    
     }
   });
 
@@ -92,6 +103,7 @@ app.get('/register.ejs',(req,res)=>{
     console.log('회원가입 페이지');
     res.render('register.ejs');
 });
+
 app.post('/register',(request,response)=>{    
     console.log('회원가입 진행중');
     var username = request.body.name;
@@ -99,7 +111,7 @@ app.post('/register',(request,response)=>{
     var password = request.body.password;    
 
     if (username && userid && password) {
-        console.log('회원가입 id와 pw가 받아졌음');
+        console.log('회원가입 - id와 pw가 받아졌음');
         client.query('SELECT * FROM Users.users WHERE id = ?', [userid], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
             if (error) throw error;
             if (results.length <= 0) {     // DB에 같은 이름의 회원아이디가 없는 경우 
@@ -124,6 +136,52 @@ app.post('/register',(request,response)=>{
     } else {        // 입력되지 않은 정보가 있는 경우
         response.send(`입력하지 않은 칸이 있습니다.`);
     }
+});
+
+//홈
+app.get('/index.ejs', function(req, res){
+    console.log('다시 홈으로 작동');
+    res.render('index.ejs'); 
+});
+
+//등록
+app.get('/bioregister.ejs', function(req, res){
+    console.log('등록 작동');
+    res.render('bioregister.ejs');
+});
+
+//이체
+app.get('/service.ejs', function(req, res){
+    console.log('작동');
+    res.render('service.ejs'); 
+});
+
+//삭제
+app.get('/delete.ejs', function(req, res){
+    console.log('삭제 작동');
+    res.render('delete.ejs'); 
+});
+
+//등록방법
+app.get('/blog.ejs', function(req, res){
+    console.log('등록방법 작동');
+    res.render('blog.ejs'); 
+});
+
+//Contact
+app.get('/contact.ejs', function(req, res){
+    console.log('Contact 작동');
+    res.render('contact.ejs');
+});
+
+//로그아웃
+app.get('/logout',(req,res)=>{
+    console.log('로그아웃 성공');
+    req.session.destroy(function(err){
+        // 세션 파괴후 할 것들
+        res.redirect('/');
+    });
+
 });
 
 https.createServer(option, app).listen(3000, function(){

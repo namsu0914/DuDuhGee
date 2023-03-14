@@ -40,7 +40,7 @@
                     <div class="col-lg-7 text-left text-white">
                         <div class="h-100 d-inline-flex align-items-center border-right border-primary py-2 px-3">
                             <i class="fa fa-envelope text-primary mr-2"></i>
-                            <small>bpmdoduhgee@duksung.ac.kr</small>
+                            <small>info@example.com</small>
                         </div>
                         <div class="h-100 d-inline-flex align-items-center py-2 px-2">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>
@@ -76,42 +76,94 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="about.html" class="nav-item nav-link">등록</a>
-                            <a href="service.html" class="nav-item nav-link">이체</a>
-                            <a href="project.html" class="nav-item nav-link">삭제</a>
-                            <a href="blog.html" class="nav-item nav-link">등록방법</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="index.ejs" class="nav-item nav-link">Home</a>
+                            <a href="bioregister.ejs" class="nav-item nav-link">등록</a>
+                            <a href="service.ejs" class="nav-item nav-link active">이체</a>
+                            <a href="delete.ejs" class="nav-item nav-link">삭제</a>
+                            <a href="blog.ejs" class="nav-item nav-link">등록방법</a>
+                            <a href="contact.ejs" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="" class="btn btn-primary mr-3 d-none d-lg-block">로그인</a>
+                        <button type="button" class="btn btn-primary mr-3 d-none d-lg-block" onclick="location.href='login.ejs'">로그인</button>
                     </div>
                 </nav>
             </div>
         </div>
     </div>
-      
+    <!-- Header End -->
 
-                    <div class="bg-light rounded p-5">
-                        <h3 class="mb-4 section-title">회원가입</h3>
-                        <form action="/register" method="post">
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="display-4 mb-4 mb-md-0 text-secondary text-uppercase">Contact</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn btn-sm btn-outline-light" href="">Home</a>
+                        <i class="fas fa-angle-double-right text-light mx-2"></i>
+                        <a class="btn btn-sm btn-outline-light disabled" href="">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-end mb-4">
+                <div class="col-lg-6">
+                    <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Contact Us</h6>
+                    <h1 class="section-title mb-3">Contact Us For Cleaning Services</h1>
+                </div>
+                <div class="col-lg-6">
+                    <h4 class="font-weight-normal text-muted mb-3">Eirmod kasd duo eos et magna, diam dolore stet sea clita sit ea erat lorem. Ipsum eos ipsum magna lorem stet</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
                             <div class="form-row">
-                                <div class="loginbox">
-                                    <label for="name">이름 *</label>
-                                    <input type="text" class="form-control" name="name" placeholder="이름을 입력해 주세요"> 
-                                    <label for="loginid">ID *</label>
-                                    <input type="text" class="form-control" name="loginid" placeholder="아이디를 입력해 주세요">  
-                                    <label for="password">PW *</label>
-                                    <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력해 주세요">
+                                <div class="col-sm-6 control-group">
+                                    <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="col-sm-6 control-group">
+                                    <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                    <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            <div class="form-group mb-0">
-                                <button type="submit" class="btn btn-primary">회원가입</button>
+                            <div class="control-group">
+                                <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <textarea class="form-control p-4" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
-               
+                <div class="col-lg-5" style="min-height: 400px;">
+                    <div class="position-relative h-100 rounded overflow-hidden">
+                        <iframe style="width: 100%; height: 100%; object-fit: cover;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
 
 
     <!-- Footer Start -->
@@ -130,7 +182,7 @@
                 <h4 class="font-weight-semi-bold text-primary mb-4">Get In Touch</h4>
                 <p><i class="fa fa-map-marker-alt text-primary mr-2"></i>123 Street, New York, USA</p>
                 <p><i class="fa fa-phone-alt text-primary mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope text-primary mr-2"></i>bpmdoduhgee@duksung.ac.k</p>
+                <p><i class="fa fa-envelope text-primary mr-2"></i>info@example.com</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>

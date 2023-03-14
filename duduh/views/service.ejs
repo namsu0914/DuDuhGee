@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <!-- Header Start -->
+    <!-- Header Start --> 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 bg-secondary d-none d-lg-block">
@@ -76,43 +76,117 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="about.html" class="nav-item nav-link">등록</a>
-                            <a href="service.html" class="nav-item nav-link">이체</a>
-                            <a href="project.html" class="nav-item nav-link">삭제</a>
-                            <a href="blog.html" class="nav-item nav-link">등록방법</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="index.ejs" class="nav-item nav-link">Home</a>
+                            <a href="bioregister.ejs" class="nav-item nav-link">등록</a>
+                            <a href="service.ejs" class="nav-item nav-link active">이체</a>
+                            <a href="delete.ejs" class="nav-item nav-link">삭제</a>
+                            <a href="blog.ejs" class="nav-item nav-link">등록방법</a>
+                            <a href="contact.ejs" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="" class="btn btn-primary mr-3 d-none d-lg-block">로그인</a>
+                        <button type="button" class="btn btn-primary mr-3 d-none d-lg-block" onclick="location.href='login.ejs'">로그인</button>
                     </div>
                 </nav>
             </div>
         </div>
     </div>
-      
+    <!-- Header End -->
 
-                    <div class="bg-light rounded p-5">
-                        <h3 class="mb-4 section-title">회원가입</h3>
-                        <form action="/register" method="post">
-                            <div class="form-row">
-                                <div class="loginbox">
-                                    <label for="name">이름 *</label>
-                                    <input type="text" class="form-control" name="name" placeholder="이름을 입력해 주세요"> 
-                                    <label for="loginid">ID *</label>
-                                    <input type="text" class="form-control" name="loginid" placeholder="아이디를 입력해 주세요">  
-                                    <label for="password">PW *</label>
-                                    <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력해 주세요">
-                                </div>
-                            </div>
-                            <div class="form-group mb-0">
-                                <button type="submit" class="btn btn-primary">회원가입</button>
-                            </div>
-                        </form>
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="display-4 mb-4 mb-md-0 text-secondary text-uppercase">이체</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn btn-sm btn-outline-light" href="">이체</a>          
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
 
-               
 
+    <!-- Services Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Our Services</h6>
+                    <h1 class="mb-4 section-title">잔액</h1>
+                    <p>10.000.000</p>
+                    <a href="" class="btn btn-primary mt-3 py-2 px-4">자세히</a>
+                </div>
+                <div class="col-lg-6 pt-5 pt-lg-0">
+                    <div class="owl-carousel service-carousel position-relative">
+                        <div class="d-flex flex-column align-items-center text-center bg-light rounded overflow-hidden pt-4">
+                            <div class="icon-box bg-light text-secondary shadow mt-2 mb-4">
+                                <i class="fa fa-2x fa-hotel"></i>
+                            </div>
+                            <h5 class="font-weight-bold mb-4 px-4">계좌 1</h5>
+                            <img src="img/blog-1.jpg" alt="">
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-center bg-light rounded overflow-hidden pt-4">
+                            <div class="icon-box bg-light text-secondary shadow mt-2 mb-4">
+                                <i class="fa fa-2x fa-city"></i>
+                            </div>
+                            <h5 class="font-weight-bold mb-4 px-4">계좌 2</h5>
+                            <img src="img/blog-3.jpg" alt="">
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-center bg-light rounded overflow-hidden pt-4">
+                            <div class="icon-box bg-light text-secondary shadow mt-2 mb-4">
+                                <i class="fa fa-2x fa-spa"></i>
+                            </div>
+                            <h5 class="font-weight-bold mb-4 px-4">계좌 3</h5>
+                            <img src="img/blog-2.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+    <!-- Contact Info Start -->
+    <div class="container-fluid py-5 contact-info">
+        <div class="row">
+            <div class="col-lg-4 p-0">
+                <div class="contact-info-item d-flex align-items-center justify-content-center bg-primary text-white py-4 py-lg-0">
+                    <i class="fa fa-3x fa-map-marker-alt text-secondary mr-4"></i>
+                    <div class="">
+                        <h5 class="mb-2">Our Office</h5>
+                        <p class="m-0">123 Street, New York, USA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 p-0">
+                <div class="contact-info-item d-flex align-items-center justify-content-center bg-secondary text-white py-4 py-lg-0">
+                    <i class="fa fa-3x fa-envelope-open text-primary mr-4"></i>
+                    <div class="">
+                        <h5 class="mb-2">Email Us</h5>
+                        <p class="m-0">bpmdoduhgee@duksung.ac.kr</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 p-0">
+                <div class="contact-info-item d-flex align-items-center justify-content-center bg-primary text-white py-4 py-lg-0">
+                    <i class="fa fa-3x fa-phone-alt text-secondary mr-4"></i>
+                    <div class="">
+                        <h5 class="mb-2">Call Us</h5>
+                        <p class="m-0">+012 345 6789</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Info End -->
+
+
+    
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
@@ -130,7 +204,7 @@
                 <h4 class="font-weight-semi-bold text-primary mb-4">Get In Touch</h4>
                 <p><i class="fa fa-map-marker-alt text-primary mr-2"></i>123 Street, New York, USA</p>
                 <p><i class="fa fa-phone-alt text-primary mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope text-primary mr-2"></i>bpmdoduhgee@duksung.ac.k</p>
+                <p><i class="fa fa-envelope text-primary mr-2"></i>bpmdoduhgee@duksung.ac.kr</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>

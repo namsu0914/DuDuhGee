@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-lg-3 bg-secondary d-none d-lg-block">
                 <a href="index.ejs" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <h1 class="m-0 display-3 text-primary">Doduhgee</h1>
+                    <h1 class="m-0 display-3 text-primary">Duduhgee</h1>
                 </a>
             </div>
             <div class="col-lg-9">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="h-100 d-inline-flex align-items-center py-2 px-2">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>
-                            <small>+012 345 6789</small>
+                            <small>+012 345 6789</small> 
                         </div>
                     </div>
                     <div class="col-lg-5 text-right">
@@ -69,49 +69,144 @@
                 </div>
                 <nav class="navbar navbar-expand-lg bg-white navbar-light p-0">
                     <a href="index.ejs" class="navbar-brand d-block d-lg-none">
-                        <h1 class="m-0 display-4 text-primary">Doduhgee</h1>
+                        <h1 class="m-0 display-4 text-primary">Duduhgee</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="about.html" class="nav-item nav-link">등록</a>
-                            <a href="service.html" class="nav-item nav-link">이체</a>
-                            <a href="project.html" class="nav-item nav-link">삭제</a>
-                            <a href="blog.html" class="nav-item nav-link">등록방법</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="index.ejs" class="nav-item nav-link">Home</a>
+                            <a href="bioregister.ejs" class="nav-item nav-link">등록</a>
+                            <a href="service.ejs" class="nav-item nav-link active">이체</a>
+                            <a href="delete.ejs" class="nav-item nav-link">삭제</a>
+                            <a href="blog.ejs" class="nav-item nav-link">등록방법</a>
+                            <a href="contact.ejs" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="" class="btn btn-primary mr-3 d-none d-lg-block">로그인</a>
+                        <button type="button" class="btn btn-primary mr-3 d-none d-lg-block" onclick="location.href='login.ejs'">로그인</button>   
                     </div>
                 </nav>
             </div>
         </div>
     </div>
-      
+    <!-- Header End -->
 
-                    <div class="bg-light rounded p-5">
-                        <h3 class="mb-4 section-title">회원가입</h3>
-                        <form action="/register" method="post">
-                            <div class="form-row">
-                                <div class="loginbox">
-                                    <label for="name">이름 *</label>
-                                    <input type="text" class="form-control" name="name" placeholder="이름을 입력해 주세요"> 
-                                    <label for="loginid">ID *</label>
-                                    <input type="text" class="form-control" name="loginid" placeholder="아이디를 입력해 주세요">  
-                                    <label for="password">PW *</label>
-                                    <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력해 주세요">
-                                </div>
-                            </div>
-                            <div class="form-group mb-0">
-                                <button type="submit" class="btn btn-primary">회원가입</button>
-                            </div>
-                        </form>
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="display-4 mb-4 mb-md-0 text-secondary text-uppercase">지문 등록</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn btn-sm btn-outline-light" href="">지문</a>
+                        <i class="fas fa-angle-double-right text-light mx-2"></i>
+                        <a class="btn btn-sm btn-outline-light disabled" href="">심전도</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
 
-               
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <h2 class="text-white m-0">지문인식</h2>
+                </div>
+                <div class="col-lg-7 pt-5 pb-lg-5">
+                    <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Learn About Us</h6>
+                    <h1 class="mb-4 section-title">We Provide The Best Cleaning Services</h1>
+                    <h5 class="text-muted font-weight-normal mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea lorem justo est dolor eos</h5>
+                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
+                    <div class="d-flex align-items-center pt-4">
+                        <a href="" class="btn btn-primary mr-5">Learn More</a>
+                        <button type="button" class="btn-play" data-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                            <span></span>
+                        </button>
+                        <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <div class="container-fluid bg-primary py-5 mb-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="display-4 mb-4 mb-md-0 text-secondary text-uppercase">심전도 등록</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn btn-sm btn-outline-light disabled" href="">지문</a>
+                        <i class="fas fa-angle-double-right text-light mx-2"></i>
+                        <a class="btn btn-sm btn-outline-light" href="">심전도</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- About Start -->
+      <div class="container-fluid py-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="d-flex flex-column align-items-center justify-content-center bg-about rounded h-100 py-5 px-3">
+                        <i class="fa fa-5x fa-award text-primary mb-4"></i>
+                        <h1 class="display-2 text-white mb-2" data-toggle="counter-up">25</h1>
+                        <h2 class="text-white m-0">Years Experience</h2>
+                    </div>
+                </div>
+                <div class="col-lg-7 pt-5 pb-lg-5">
+                    <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Learn About Us</h6>
+                    <h1 class="mb-4 section-title">We Provide The Best Cleaning Services</h1>
+                    <h5 class="text-muted font-weight-normal mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea lorem justo est dolor eos</h5>
+                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
+                    <div class="d-flex align-items-center pt-4">
+                        <a href="" class="btn btn-primary mr-5">Learn More</a>
+                        <button type="button" class="btn-play" data-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                            <span></span>
+                        </button>
+                        <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Video Modal Start -->
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Modal End -->
+
+
+    
+    
 
 
     <!-- Footer Start -->
@@ -130,7 +225,7 @@
                 <h4 class="font-weight-semi-bold text-primary mb-4">Get In Touch</h4>
                 <p><i class="fa fa-map-marker-alt text-primary mr-2"></i>123 Street, New York, USA</p>
                 <p><i class="fa fa-phone-alt text-primary mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope text-primary mr-2"></i>bpmdoduhgee@duksung.ac.k</p>
+                <p><i class="fa fa-envelope text-primary mr-2"></i>bpmdoduhgee@duksung.ac.kr</p>
                 <div class="d-flex justify-content-start mt-4">
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
