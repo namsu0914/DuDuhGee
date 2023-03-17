@@ -16,6 +16,10 @@ const option = {
     cert: fs.readFileSync('cert.pem', 'utf8'),
     passphrase:'230313'
 };
+//sha512로 비번 암호화
+const createHashedPassword = (password) => {
+    return crypto.createHash("sha256").update(password).digest("base64");
+};
 
 // express 설정 1
 const app = express();
@@ -75,20 +79,22 @@ app.post('/login', (request, response) => {
     var password = request.body.password;
     if (username && password) {             // id와 pw가 입력되었는지 확인
         console.log('로그인 - id와 pw가 받아졌음');
-        client.query('SELECT * FROM Users.users WHERE id = ? AND password = ?', [username, password], function(error, results, fields) {
+        var passw=createHashedPassword(password);
+        client.query('SELECT * FROM Users.users WHERE id = ? AND password = ?', [username, passw], function(error, results, fields) {
             if (error) throw error;
             if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
                 response.send(`로그인 성공`);  
-                request.session.is_logined = true;
-                request.session.id = username;
-                request.session.pw = password;
-                request.session.save(function(){ // 세션 스토어에 적용하는 작업
-                    response.render('index',{ // 정보전달
-                        id : username,
-                        pw : password,
-                        is_logined : true
-                    });
-            });
+            // 세션을 넣으면 Cannot set headers after they are sent to the client 에러 생김
+            //     request.session.is_logined = true;
+            //     request.session.id = username;
+            //     request.session.pw = passw;
+            //     request.session.save(function(){ // 세션 스토어에 적용하는 작업
+            //         response.render('index',{ // 정보전달
+            //             id : username,
+            //             pw : passw,
+            //             is_logined : true
+            //         });
+            // }); 
             } else {              
                 response.send(`로그인정보 일치 안함`);    
             }            
@@ -115,14 +121,22 @@ app.post('/register',(request,response)=>{
         client.query('SELECT * FROM Users.users WHERE id = ?', [userid], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
             if (error) throw error;
             if (results.length <= 0) {     // DB에 같은 이름의 회원아이디가 없는 경우 
-                const param=[userid, password, username];
-                bcrypt.hash(param[1], saltRounds, (error, hash)=>{
-                    param[1]=hash;
-                    client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
-                        if (error) throw error2;
-                        response.send(`회원가입이 완료되었습니다.`);
-                    });
+                var pw=createHashedPassword(password);
+                client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, pw, username], function (error, data) {
+                    console.log('됐나');
+                    if (error) throw error2;
+                    response.send(`회원가입이 완료되었습니다.`);
                 });
+                // 그냥 해본 암호화 코드
+                // const param=[userid, password, username];
+                // bcrypt.hash(param[1], saltRounds, (error, hash)=>{
+                //     param[1]=hash;
+                //     client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
+                //         if (error) throw error2;
+                //         response.send(`회원가입이 완료되었습니다.`);
+                //     });
+                // });
+
                 // 아래는 암호화 적용 안하는 코드
                 // client.query('INSERT INTO users (id, password, name) VALUES(?,?,?)', [userid, password, username], function (error, data) {
                 //     console.log('됐나');
